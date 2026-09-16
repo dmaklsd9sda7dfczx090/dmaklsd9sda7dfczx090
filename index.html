@@ -909,6 +909,11 @@ setInterval(createFeather, 300);
 function enterSite() {
     document.getElementById("intro").classList.add("hidden");
     document.getElementById("site-content").classList.add("visible");
+
+    const music = document.getElementById("music");
+
+    music.volume = 0.2;
+    music.play();
 }
 
 function showPage(pageId, button) {
