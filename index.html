@@ -57,22 +57,6 @@ body {
         url("images/BG.png") center/cover fixed;
 }
 
-#feathers {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.feather {
-    position: absolute;
-    top: -40px;
-    color: white;
-    filter: grayscale(1) brightness(3);
-    animation: fall linear forwards;
-}
-
 @keyframes fall {
     to {
         transform: translateY(110vh) translateX(150px) rotate(720deg);
@@ -500,7 +484,6 @@ h2 {
     <source src="music/hana.mp3" type="audio/mpeg">
 </audio>
 
-<div id="feathers"></div>
 
 <main>
     <section id="intro" class="intro-screen">
@@ -895,27 +878,6 @@ h2 {
 </main>
 
 <script>
-const feathers = document.getElementById("feathers");
-
-function createFeather() {
-    const feather = document.createElement("div");
-
-    feather.className = "feather";
-    feather.textContent = "🪶";
-    feather.style.left = Math.random() * 100 + "vw";
-    feather.style.fontSize = 16 + Math.random() * 20 + "px";
-    feather.style.animationDuration = 8 + Math.random() * 8 + "s";
-
-    feathers.appendChild(feather);
-
-    setTimeout(() => feather.remove(), 16000);
-}
-
-for (let i = 0; i < 20; i++) {
-    setTimeout(createFeather, i * 300);
-}
-
-setInterval(createFeather, 300);
 
 function enterSite() {
     document.getElementById("intro").classList.add("hidden");
