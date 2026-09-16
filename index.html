@@ -14,7 +14,33 @@
     box-sizing: border-box;
     font-family: Inter, sans-serif;
 }
+.secret-link {
+    color: #999;
+    font-weight: 800;
+    text-decoration: none;
+    transition: .25s;
+}
 
+.secret-link:hover {
+    color: white;
+}
+.back {
+    display: inline-block;
+    margin-bottom: 35px;
+    padding: 12px 25px;
+    color: white;
+    background: rgba(255,255,255,.12);
+    border: 1px solid white;
+    cursor: pointer;
+    font-size: .85rem;
+    font-weight: 600;
+    transition: .25s;
+}
+
+.back:hover {
+    background: rgba(255,255,255,.3);
+    transform: translateY(-4px);
+}
 body {
     min-height: 100vh;
     color: white;
@@ -463,6 +489,10 @@ h2 {
 
 <body>
 
+    <audio id="music" autoplay loop>
+    <source src="music/hana.mp3" type="audio/mpeg">
+</audio>
+
 <div id="feathers"></div>
 
 <main>
@@ -486,7 +516,9 @@ h2 {
         <div class="welcome-box">
             <h2 class="section-title"> Welcome </h2>
             <p>
-                Segredo 2.
+  <a class="secret-link" href="https://www.youtube.com/shorts/ndsOheY-NWw" target="_blank">
+    Segredo 2.
+</a>
             </p>
         </div>
     </section>
