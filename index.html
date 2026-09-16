@@ -1,0 +1,720 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meguri's Skin Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    color: white;
+    text-align: center;
+    background:
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.88)),
+        url("images/BG.jpg") center/cover fixed;
+}
+
+#feathers {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.feather {
+    position: absolute;
+    top: -40px;
+    color: white;
+    filter: grayscale(1) brightness(3);
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) translateX(150px) rotate(720deg);
+    }
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    width: min(1100px, 100%);
+    margin: auto;
+    padding: 45px 20px 60px;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+}
+
+h2 {
+    font-weight: 800;
+}
+
+.subtitle {
+    opacity: .7;
+    margin-top: -20px;
+    margin-bottom: 45px;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 35px 0 55px;
+}
+
+.socials a {
+    padding: 13px 25px;
+    color: white;
+    text-decoration: none;
+    font-size: .85rem;
+    font-weight: 600;
+    background: rgba(255,255,255,.12);
+    border: 1px solid white;
+    transition: .25s;
+}
+
+.socials a:hover {
+    background: rgba(255,255,255,.3);
+    transform: translateY(-4px);
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    padding: 18px;
+    color: white;
+    text-align: left;
+    text-decoration: none;
+    background: rgba(23,23,23,.85);
+    border: 1px solid #555;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.profile:hover {
+    transform: translateY(-5px);
+    background: rgba(50,50,50,.95);
+    border-color: white;
+}
+
+.profile img {
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.profile h2 {
+    font-size: 1.5rem;
+}
+
+.profile p {
+    margin-top: 5px;
+    opacity: .7;
+    font-size: .9rem;
+}
+
+.profile span {
+    display: inline-block;
+    margin-top: 10px;
+    color: white;
+    font-size: .9rem;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 35px;
+    padding: 12px 22px;
+    color: white;
+    background: rgba(255,255,255,.12);
+    border: 1px solid white;
+    cursor: pointer;
+    font-size: .9rem;
+    transition: .25s;
+}
+
+.back:hover {
+    background: rgba(255,255,255,.3);
+}
+
+.profile-header {
+    margin-bottom: 35px;
+}
+
+.profile-header img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.profile-header h1 {
+    margin-bottom: 10px;
+    font-size: clamp(2rem, 6vw, 4rem);
+}
+
+.profile-header p {
+    opacity: .7;
+}
+
+.section-title {
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.skin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.skin-card {
+    overflow: hidden;
+    background: rgba(0,0,0,.55);
+    border: 1px solid rgba(255,255,255,.12);
+    border-top: 3px solid white;
+    transition: .25s;
+}
+
+.skin-card:hover {
+    transform: translateY(-5px);
+    border-color: white;
+}
+
+.skin-card h2 {
+    padding: 15px;
+    font-size: 1.2rem;
+}
+
+.skin-preview {
+    display: block;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: rgba(17,17,17,.5);
+}
+
+.skin-preview img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: .75;
+    transition: .25s;
+}
+
+.skin-preview:hover img {
+    transform: scale(1.04);
+    opacity: .5;
+}
+
+.empty {
+    opacity: .7;
+    padding: 30px;
+}
+
+@media (max-width: 768px) {
+    body {
+        background:
+            linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.65)),
+            url("images/BG.jpg") center/cover fixed;
+    }
+
+    main {
+        padding: 25px 15px 40px;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .profile {
+        padding: 14px;
+        gap: 14px;
+        background: rgba(23,23,23,.65);
+        border-color: rgba(255,255,255,.35);
+    }
+
+    .profile img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .profile h2 {
+        font-size: 1.4rem;
+    }
+
+    .profile p,
+    .profile span {
+        font-size: .8rem;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 9vw, 3rem);
+        letter-spacing: 1px;
+        line-height: 1.2;
+    }
+
+    .socials {
+        gap: 8px;
+        margin: 25px 0 40px;
+    }
+
+    .socials a {
+        padding: 11px 16px;
+        font-size: .8rem;
+    }
+
+    .section-title {
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+
+    .skin-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .skin-card {
+        background: rgba(0,0,0,.45);
+    }
+
+    .skin-card h2 {
+        padding: 13px;
+        font-size: 1.05rem;
+    }
+
+    .skin-preview img {
+        opacity: .9;
+    }
+}
+
+@media (max-width: 400px) {
+    main {
+        padding: 20px 12px 35px;
+    }
+
+    .profile {
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .profile img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .profile h2 {
+        font-size: 1.2rem;
+    }
+
+    h1 {
+        font-size: 1.9rem;
+    }
+
+    .socials a {
+        padding: 10px 13px;
+        font-size: .75rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="feathers"></div>
+
+<main>
+
+<!-- HOMEPAGE -->
+
+<section id="home" class="page active">
+
+    <h1>Meguri's Skin Hub</h1>
+
+    <div class="socials">
+        <a href="https://x.com/legnaism" target="_blank">TWITTER</a>
+        <a href="https://instagram.com/chainbail" target="_blank">INSTAGRAM</a>
+        <a href="https://twitch.tv/pesames" target="_blank">TWITCH</a>
+    </div>
+
+    <h2 class="section-title">/// Profiles</h2>
+
+    <div class="profile-grid">
+
+        <div class="profile" onclick="showProfile('meguri')">
+            <img src="https://a.ppy.sh/23598448" alt="Meguri">
+            <div>
+                <h2>meguri</h2>
+                <p>osu! standard player</p>
+                <span>View Skins</span>
+            </div>
+        </div>
+
+        <div class="profile" onclick="showProfile('guibbs')">
+            <img src="https://a.ppy.sh/14399682" alt="guibbs">
+            <div>
+                <h2>guibbs</h2>
+                <p>osu! standard player</p>
+                <span>View Skins</span>
+            </div>
+        </div>
+
+        <div class="profile" onclick="showProfile('zeni')">
+            <img src="https://a.ppy.sh/22453980" alt="zeni">
+            <div>
+                <h2>zeni</h2>
+                <p>osu! standard player</p>
+                <span>View Skins</span>
+            </div>
+        </div>
+
+
+        <div class="profile" onclick="showProfile('dwlavi')">
+            <img src="https://a.ppy.sh/20894239" alt="dwlavi">
+            <div>
+                <h2>dwlavi</h2>
+                <p>osu! standard player</p>
+                <span>View Skins</span>
+            </div>
+        </div>
+
+        <div class="profile" onclick="showProfile('reunion')">
+            <img src="https://a.ppy.sh/10440699" alt="reunion">
+            <div>
+                <h2>reunion</h2>
+                <p>osu! standard player</p>
+                <span>View Skins</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section id="meguri" class="page">
+
+    <button class="back" onclick="showHome()">Back</button>
+
+    <div class="profile-header">
+        <img src="https://a.ppy.sh/23598448" alt="Meguri">
+        <h1>meguri</h1>
+        <p>osu! standard player</p>
+    </div>
+
+    <div class="socials">
+        <a href="https://x.com/legnaism" target="_blank">TWITTER</a>
+        <a href="https://instagram.com/chainbail" target="_blank">INSTAGRAM</a>
+        <a href="https://twitch.tv/pesames" target="_blank">TWITCH</a>
+        <a href="https://osu.ppy.sh/users/23598448" target="_blank">OSU! PROFILE</a>
+    </div>
+
+    <h2 class="section-title">/// Meguri's Skins</h2>
+
+    <div class="skin-grid">
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://skins.osuck.net/skins/5623?tab=downloads" target="_blank">
+                <img src="images/rafisp.png" alt="Rafis paint">
+            </a>
+            <h2>Rafis paint</h2>
+        </div>
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://www.mediafire.com/file/wrcjb5xy4tec9ub/meguri_james_bond.osk/file" target="_blank">
+                <img src="images/james.png" alt="meguri james bond">
+            </a>
+            <h2>meguri james bond</h2>
+        </div>
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://www.mediafire.com/file/ii7zw14hbtkzzj1/oblivion_888.osk/file" target="_blank">
+                <img src="images/oblivion.png" alt="oblivion 888">
+            </a>
+            <h2>oblivion 888</h2>
+        </div>
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://www.mediafire.com/file/701zieg4fh8ypmg/oblivion_888_dt.osk/file" target="_blank">
+                <img src="images/obliviondt.png" alt="oblivion 888 DT">
+            </a>
+            <h2>oblivion 888 DT</h2>
+        </div>
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://www.mediafire.com/file/ni6kbhh4idc9zw0/BEBETAO+LANCHES+SKIN+SECRETA.osk/file" target="_blank">
+                <img src="images/BEBETAO.png" alt="BEBETAO LANCHES SKIN SECRETA">
+            </a>
+            <h2>BEBETAO LANCHES</h2>
+        </div>
+
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://www.mediafire.com/file/l4n10d0rolv55xv/flannm+v1.osk/file" target="_blank">
+                <img src="images/flan.png" alt="flan">
+            </a>
+            <h2>flan</h2>
+        </div>
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://www.mediafire.com/file/t2t49pc916cfvim/flandt+v1.osk/file" target="_blank">
+                <img src="images/flandt.png" alt="flan dt">
+            </a>
+            <h2>flan dt</h2>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section id="guibbs" class="page">
+
+    <button class="back" onclick="showHome()">Back</button>
+
+    <div class="profile-header">
+        <img src="https://a.ppy.sh/14399682" alt="guibbs">
+        <h1>guibbs</h1>
+        <p>osu! standard player</p>
+    </div>
+
+    <div class="socials">
+        <a href="https://x.com/gui66s" target="_blank">TWITTER</a>
+        <a href="https://twitch.tv/guibbs" target="_blank">TWITCH</a>
+        <a href="https://osu.ppy.sh/users/14399682" target="_blank">OSU! PROFILE</a>
+    </div>
+
+    <h2 class="section-title">/// Guibbs's Skins</h2>
+
+    <div class="skin-grid">
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://www.mediafire.com/file/p7op2pqsdeygjor/aristia+gate.osk/file" target="_blank">
+                <img src="images/aristia.png" alt="aristia gate 11111111">
+            </a>
+            <h2>aristia gate 11111111</h2>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="zeni" class="page">
+
+    <button class="back" onclick="showHome()">Back</button>
+
+    <div class="profile-header">
+        <img src="https://a.ppy.sh/22453980" alt="zeni">
+        <h1>zeni</h1>
+        <p>osu! standard player</p>
+    </div>
+
+    <div class="socials">
+        <a href="https://x.com/zeniossu" target="_blank">TWITTER</a>
+        <a href="https://osu.ppy.sh/users/22453980" target="_blank">OSU! PROFILE</a>
+    </div>
+
+    <h2 class="section-title">/// zeni's Skins</h2>
+
+    <div class="skin-grid">
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://www.mediafire.com/file/e3d2dl1nohdpylf/--_DT_zeni.osk/file" target="_blank">
+                <img src="images/zeni.png" alt="-- DT zeni">
+            </a>
+            <h2>-- DT zeni</h2>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="dwlavi" class="page">
+
+    <button class="back" onclick="showHome()">Back</button>
+
+    <div class="profile-header">
+        <img src="https://a.ppy.sh/20894239" alt="dwlavi">
+        <h1>dwlavi</h1>
+        <p>osu! standard player</p>
+    </div>
+
+    <div class="socials">
+        <a href="https://x.com/aftrhanabi" target="_blank">TWITTER</a>
+        <a href="https://twitch.tv/dwlavi" target="_blank">TWITCH</a>
+        <a href="https://osu.ppy.sh/users/20894239" target="_blank">OSU! PROFILE</a>
+    </div>
+
+    <h2 class="section-title">/// Dwlavi's Skins</h2>
+
+    <div class="skin-grid">
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://skins.osuck.net/skins/5492?tab=downloads" target="_blank">
+                <img src="images/yukari.png" alt="yukari lover">
+            </a>
+            <h2>yukari lover</h2>
+        </div>
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://www.mediafire.com/file/k0uqfax5fk2akzk/oblivion_222.osk/file" target="_blank">
+                <img src="images/oblivion222.png" alt="oblivion 222">
+            </a>
+            <h2>oblivion 222</h2>
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<section id="reunion" class="page">
+
+    <button class="back" onclick="showHome()">Back</button>
+
+    <div class="profile-header">
+        <img src="https://a.ppy.sh/10440699" alt="reunion">
+        <h1>reunion</h1>
+        <p>osu! standard player</p>
+    </div>
+
+    <div class="socials">
+        <a href="https://x.com/lvl6ss" target="_blank">TWITTER</a>
+        <a href="https://twitch.tv/reunionsu" target="_blank">TWITCH</a>
+        <a href="https://osu.ppy.sh/users/10440699" target="_blank">OSU! PROFILE</a>
+    </div>
+
+    <h2 class="section-title">/// Reunion's Skins</h2>
+
+    <div class="skin-grid">
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://drive.google.com/file/d/1DnMMTziv_Aq6I49O5gmpGbXrDytmWGxZ/view?usp=sharing" target="_blank">
+                <img src="images/reunion.png" alt="reunion hddt">
+            </a>
+            <h2>reunion HDDT</h2>
+        </div>
+
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://drive.google.com/file/d/1ICTd4ywwpKOmqV-Y3Thqe-kenBhJPwsH/view?usp=sharing" target="_blank">
+                <img src="images/reunionog.png" alt="reunion hddt og">
+            </a>
+            <h2>reunion HDDT og</h2>
+        </div>
+
+        <div class="skin-card">
+            <a class="skin-preview" href="https://drive.google.com/file/d/16s9h43eejOseA-VyhQC6AXaGxc3uEvWz/view?usp=sharing" target="_blank">
+                <img src="images/ar11.png" alt="ar11">
+            </a>
+            <h2>ar11</h2>
+        </div>
+
+
+    </div>
+
+</section>
+
+</main>
+
+
+<script>
+
+const feathers = document.getElementById("feathers");
+
+function createFeather() {
+    const feather = document.createElement("div");
+
+    feather.className = "feather";
+    feather.textContent = "🪶";
+    feather.style.left = Math.random() * 100 + "vw";
+    feather.style.fontSize = 16 + Math.random() * 20 + "px";
+    feather.style.animationDuration = 8 + Math.random() * 8 + "s";
+
+    feathers.appendChild(feather);
+
+    setTimeout(() => feather.remove(), 16000);
+}
+
+for (let i = 0; i < 20; i++) {
+    setTimeout(createFeather, i * 300);
+}
+
+setInterval(createFeather, 300);
+
+
+function showProfile(profile) {
+
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(profile).classList.add("active");
+
+    window.scrollTo(0, 0);
+}
+
+
+function showHome() {
+
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.getElementById("home").classList.add("active");
+
+    window.scrollTo(0, 0);
+}
+
+</script>
+
+</body>
+</html>
