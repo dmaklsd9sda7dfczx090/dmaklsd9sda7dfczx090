@@ -14,6 +14,13 @@
     box-sizing: border-box;
     font-family: Inter, sans-serif;
 }
+.menu-image {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    margin: 0 auto;
+}
 .secret-link {
     color: #999;
     font-weight: 800;
@@ -874,7 +881,11 @@ h2 {
 
     </section>
 
+<section id="cardapio" class="page">
 
+    <img class="menu-image" src="images/cardapio.png" alt="Cardapio">
+
+</section>
 
 
 
@@ -912,7 +923,7 @@ function enterSite() {
 
     const music = document.getElementById("music");
 
-    music.volume = 0.1;
+    music.volume = 0.2;
     music.play();
 }
 
