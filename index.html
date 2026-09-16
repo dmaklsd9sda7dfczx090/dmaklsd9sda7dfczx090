@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +51,47 @@ main {
     z-index: 1;
     width: min(1100px, 100%);
     margin: auto;
-    padding: 45px 20px 60px;
+    padding: 25px 20px 60px;
+}
+
+.navbar {
+    position: sticky;
+    top: 15px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 65px;
+    padding: 10px;
+    background: rgba(15,15,15,.88);
+    border: 1px solid rgba(255,255,255,.3);
+    backdrop-filter: blur(10px);
+}
+
+.navbar button {
+    padding: 12px 25px;
+    color: white;
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: .85rem;
+    font-weight: 600;
+    transition: .25s;
+}
+
+.navbar button:hover,
+.navbar button.active {
+    background: rgba(255,255,255,.15);
+    border-color: white;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
 }
 
 h1 {
@@ -60,7 +99,7 @@ h1 {
     font-weight: 800;
     letter-spacing: 3px;
     text-transform: uppercase;
-    margin-bottom: 35px;
+    margin-bottom: 25px;
 }
 
 h2 {
@@ -69,8 +108,14 @@ h2 {
 
 .subtitle {
     opacity: .7;
-    margin-top: -20px;
-    margin-bottom: 45px;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 .socials {
@@ -150,30 +195,6 @@ h2 {
     font-size: .9rem;
 }
 
-.page {
-    display: none;
-}
-
-.page.active {
-    display: block;
-}
-
-.back {
-    display: inline-block;
-    margin-bottom: 35px;
-    padding: 12px 22px;
-    color: white;
-    background: rgba(255,255,255,.12);
-    border: 1px solid white;
-    cursor: pointer;
-    font-size: .9rem;
-    transition: .25s;
-}
-
-.back:hover {
-    background: rgba(255,255,255,.3);
-}
-
 .profile-header {
     margin-bottom: 35px;
 }
@@ -193,13 +214,6 @@ h2 {
 
 .profile-header p {
     opacity: .7;
-}
-
-.section-title {
-    margin-bottom: 25px;
-    font-size: 1.5rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
 }
 
 .skin-grid {
@@ -248,9 +262,38 @@ h2 {
     opacity: .5;
 }
 
-.empty {
+.team-list {
+    max-width: 700px;
+    margin: 0 auto 50px;
+    display: grid;
+    gap: 15px;
+}
+
+.team-member {
+    padding: 22px;
+    background: rgba(23,23,23,.85);
+    border: 1px solid #555;
+}
+
+.team-member h2 {
+    margin-bottom: 6px;
+}
+
+.team-member p {
     opacity: .7;
-    padding: 30px;
+}
+
+.welcome-box {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 35px 25px;
+    background: rgba(0,0,0,.35);
+    border: 1px solid rgba(255,255,255,.2);
+}
+
+.welcome-box p {
+    line-height: 1.8;
+    opacity: .75;
 }
 
 @media (max-width: 768px) {
@@ -261,10 +304,21 @@ h2 {
     }
 
     main {
-        padding: 25px 15px 40px;
+        padding: 15px 15px 40px;
     }
 
-    .profile-grid {
+    .navbar {
+        top: 10px;
+        margin-bottom: 45px;
+    }
+
+    .navbar button {
+        padding: 11px 15px;
+        font-size: .8rem;
+    }
+
+    .profile-grid,
+    .skin-grid {
         grid-template-columns: 1fr;
         gap: 18px;
     }
@@ -312,11 +366,6 @@ h2 {
         letter-spacing: 2px;
     }
 
-    .skin-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
-
     .skin-card {
         background: rgba(0,0,0,.45);
     }
@@ -332,8 +381,9 @@ h2 {
 }
 
 @media (max-width: 400px) {
-    main {
-        padding: 20px 12px 35px;
+    .navbar button {
+        padding: 10px 12px;
+        font-size: .75rem;
     }
 
     .profile {
@@ -353,11 +403,6 @@ h2 {
     h1 {
         font-size: 1.9rem;
     }
-
-    .socials a {
-        padding: 10px 13px;
-        font-size: .75rem;
-    }
 }
 </style>
 </head>
@@ -367,307 +412,348 @@ h2 {
 <div id="feathers"></div>
 
 <main>
+    <nav class="navbar">
+        <button class="active" onclick="showPage('home', this)">HOME</button>
+        <button onclick="showPage('team', this)">TEAM</button>
+        <button onclick="showPage('skins', this)">SKINS</button>
+        <button onclick="showPage('socials', this)">SOCIALS</button>
+    </nav>
 
-<!-- HOMEPAGE -->
+    <section id="home" class="page active">
+        <h1>Meguri's Skin Hub</h1>
+        <p class="subtitle">Welcome to the osu! skin collection.</p>
 
-<section id="home" class="page active">
+        <div class="welcome-box">
+            <h2 class="section-title">/// Welcome</h2>
+            <p>
+                A collection of osu! skins used by the team.
+                Browse the profiles, discover skins, and find your next favorite setup.
+            </p>
+        </div>
+    </section>
 
-    <h1>Meguri's Skin Hub</h1>
+    <section id="team" class="page">
+        <h1>Team</h1>
+        <p class="subtitle">/// Meet the players</p>
 
-    <div class="socials">
-        <a href="https://x.com/legnaism" target="_blank">TWITTER</a>
-        <a href="https://instagram.com/chainbail" target="_blank">INSTAGRAM</a>
-        <a href="https://twitch.tv/pesames" target="_blank">TWITCH</a>
-    </div>
-
-    <h2 class="section-title">/// Profiles</h2>
-
-    <div class="profile-grid">
-
-        <div class="profile" onclick="showProfile('meguri')">
-            <img src="https://a.ppy.sh/23598448" alt="Meguri">
-            <div>
+        <div class="team-list">
+            <div class="team-member">
                 <h2>meguri</h2>
                 <p>osu! standard player</p>
-                <span>View Skins</span>
             </div>
-        </div>
-
-        <div class="profile" onclick="showProfile('guibbs')">
-            <img src="https://a.ppy.sh/14399682" alt="guibbs">
-            <div>
+            <div class="team-member">
                 <h2>guibbs</h2>
                 <p>osu! standard player</p>
-                <span>View Skins</span>
             </div>
-        </div>
-
-        <div class="profile" onclick="showProfile('zeni')">
-            <img src="https://a.ppy.sh/22453980" alt="zeni">
-            <div>
+            <div class="team-member">
                 <h2>zeni</h2>
                 <p>osu! standard player</p>
-                <span>View Skins</span>
             </div>
-        </div>
-
-
-        <div class="profile" onclick="showProfile('dwlavi')">
-            <img src="https://a.ppy.sh/20894239" alt="dwlavi">
-            <div>
+            <div class="team-member">
                 <h2>dwlavi</h2>
                 <p>osu! standard player</p>
-                <span>View Skins</span>
             </div>
-        </div>
-
-        <div class="profile" onclick="showProfile('reunion')">
-            <img src="https://a.ppy.sh/10440699" alt="reunion">
-            <div>
+            <div class="team-member">
                 <h2>reunion</h2>
                 <p>osu! standard player</p>
-                <span>View Skins</span>
             </div>
         </div>
+    </section>
 
-    </div>
+    <section id="skins" class="page">
+        <h1>Skins</h1>
+        <p class="subtitle">/// Choose a profile to view their skins</p>
 
-</section>
+        <div class="profile-grid">
+            <div class="profile" onclick="showPage('meguri', null)">
+                <img src="https://a.ppy.sh/23598448" alt="Meguri">
+                <div>
+                    <h2>meguri</h2>
+                    <p>osu! standard player</p>
+                    <span>View Skins</span>
+                </div>
+            </div>
 
+            <div class="profile" onclick="showPage('guibbs', null)">
+                <img src="https://a.ppy.sh/14399682" alt="guibbs">
+                <div>
+                    <h2>guibbs</h2>
+                    <p>osu! standard player</p>
+                    <span>View Skins</span>
+                </div>
+            </div>
 
+            <div class="profile" onclick="showPage('zeni', null)">
+                <img src="https://a.ppy.sh/22453980" alt="zeni">
+                <div>
+                    <h2>zeni</h2>
+                    <p>osu! standard player</p>
+                    <span>View Skins</span>
+                </div>
+            </div>
 
-<section id="meguri" class="page">
+            <div class="profile" onclick="showPage('dwlavi', null)">
+                <img src="https://a.ppy.sh/20894239" alt="dwlavi">
+                <div>
+                    <h2>dwlavi</h2>
+                    <p>osu! standard player</p>
+                    <span>View Skins</span>
+                </div>
+            </div>
 
-    <button class="back" onclick="showHome()">Back</button>
+            <div class="profile" onclick="showPage('reunion', null)">
+                <img src="https://a.ppy.sh/10440699" alt="reunion">
+                <div>
+                    <h2>reunion</h2>
+                    <p>osu! standard player</p>
+                    <span>View Skins</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="profile-header">
-        <img src="https://a.ppy.sh/23598448" alt="Meguri">
-        <h1>meguri</h1>
-        <p>osu! standard player</p>
-    </div>
+    <section id="meguri" class="page">
 
-    <div class="socials">
-        <a href="https://x.com/legnaism" target="_blank">TWITTER</a>
-        <a href="https://instagram.com/chainbail" target="_blank">INSTAGRAM</a>
-        <a href="https://twitch.tv/pesames" target="_blank">TWITCH</a>
-        <a href="https://osu.ppy.sh/users/23598448" target="_blank">OSU! PROFILE</a>
-    </div>
+        <button class="back" onclick="showHome()">Back</button>
 
-    <h2 class="section-title">/// Meguri's Skins</h2>
-
-    <div class="skin-grid">
-
-        <div class="skin-card">
-            <a class="skin-preview" href="https://skins.osuck.net/skins/5623?tab=downloads" target="_blank">
-                <img src="images/rafisp.png" alt="Rafis paint">
-            </a>
-            <h2>Rafis paint</h2>
+        <div class="profile-header">
+            <img src="https://a.ppy.sh/23598448" alt="Meguri">
+            <h1>meguri</h1>
+            <p>osu! standard player</p>
         </div>
 
-        <div class="skin-card">
-            <a class="skin-preview" href="https://www.mediafire.com/file/wrcjb5xy4tec9ub/meguri_james_bond.osk/file" target="_blank">
-                <img src="images/james.png" alt="meguri james bond">
-            </a>
-            <h2>meguri james bond</h2>
+        <div class="socials">
+            <a href="https://x.com/legnaism" target="_blank">TWITTER</a>
+            <a href="https://instagram.com/chainbail" target="_blank">INSTAGRAM</a>
+            <a href="https://twitch.tv/pesames" target="_blank">TWITCH</a>
+            <a href="https://osu.ppy.sh/users/23598448" target="_blank">OSU! PROFILE</a>
         </div>
 
-        <div class="skin-card">
-            <a class="skin-preview" href="https://www.mediafire.com/file/ii7zw14hbtkzzj1/oblivion_888.osk/file" target="_blank">
-                <img src="images/oblivion.png" alt="oblivion 888">
-            </a>
-            <h2>oblivion 888</h2>
+        <h2 class="section-title">/// Meguri's Skins</h2>
+
+        <div class="skin-grid">
+
+            <div class="skin-card">
+                <a class="skin-preview" href="https://skins.osuck.net/skins/5623?tab=downloads" target="_blank">
+                    <img src="images/rafisp.png" alt="Rafis paint">
+                </a>
+                <h2>Rafis paint</h2>
+            </div>
+
+            <div class="skin-card">
+                <a class="skin-preview" href="https://www.mediafire.com/file/wrcjb5xy4tec9ub/meguri_james_bond.osk/file" target="_blank">
+                    <img src="images/james.png" alt="meguri james bond">
+                </a>
+                <h2>meguri james bond</h2>
+            </div>
+
+            <div class="skin-card">
+                <a class="skin-preview" href="https://www.mediafire.com/file/ii7zw14hbtkzzj1/oblivion_888.osk/file" target="_blank">
+                    <img src="images/oblivion.png" alt="oblivion 888">
+                </a>
+                <h2>oblivion 888</h2>
+            </div>
+
+            <div class="skin-card">
+                <a class="skin-preview" href="https://www.mediafire.com/file/701zieg4fh8ypmg/oblivion_888_dt.osk/file" target="_blank">
+                    <img src="images/obliviondt.png" alt="oblivion 888 DT">
+                </a>
+                <h2>oblivion 888 DT</h2>
+            </div>
+
+            <div class="skin-card">
+                <a class="skin-preview" href="https://www.mediafire.com/file/ni6kbhh4idc9zw0/BEBETAO+LANCHES+SKIN+SECRETA.osk/file" target="_blank">
+                    <img src="images/BEBETAO.png" alt="BEBETAO LANCHES SKIN SECRETA">
+                </a>
+                <h2>BEBETAO LANCHES</h2>
+            </div>
+
+
+            <div class="skin-card">
+                <a class="skin-preview" href="https://www.mediafire.com/file/l4n10d0rolv55xv/flannm+v1.osk/file" target="_blank">
+                    <img src="images/flan.png" alt="flan">
+                </a>
+                <h2>flan</h2>
+            </div>
+
+            <div class="skin-card">
+                <a class="skin-preview" href="https://www.mediafire.com/file/t2t49pc916cfvim/flandt+v1.osk/file" target="_blank">
+                    <img src="images/flandt.png" alt="flan dt">
+                </a>
+                <h2>flan dt</h2>
+            </div>
+
         </div>
 
-        <div class="skin-card">
-            <a class="skin-preview" href="https://www.mediafire.com/file/701zieg4fh8ypmg/oblivion_888_dt.osk/file" target="_blank">
-                <img src="images/obliviondt.png" alt="oblivion 888 DT">
-            </a>
-            <h2>oblivion 888 DT</h2>
+    </section>
+
+
+
+    <section id="guibbs" class="page">
+
+        <button class="back" onclick="showHome()">Back</button>
+
+        <div class="profile-header">
+            <img src="https://a.ppy.sh/14399682" alt="guibbs">
+            <h1>guibbs</h1>
+            <p>osu! standard player</p>
         </div>
 
-        <div class="skin-card">
-            <a class="skin-preview" href="https://www.mediafire.com/file/ni6kbhh4idc9zw0/BEBETAO+LANCHES+SKIN+SECRETA.osk/file" target="_blank">
-                <img src="images/BEBETAO.png" alt="BEBETAO LANCHES SKIN SECRETA">
-            </a>
-            <h2>BEBETAO LANCHES</h2>
+        <div class="socials">
+            <a href="https://x.com/gui66s" target="_blank">TWITTER</a>
+            <a href="https://twitch.tv/guibbs" target="_blank">TWITCH</a>
+            <a href="https://osu.ppy.sh/users/14399682" target="_blank">OSU! PROFILE</a>
         </div>
 
+        <h2 class="section-title">/// Guibbs's Skins</h2>
 
-        <div class="skin-card">
-            <a class="skin-preview" href="https://www.mediafire.com/file/l4n10d0rolv55xv/flannm+v1.osk/file" target="_blank">
-                <img src="images/flan.png" alt="flan">
-            </a>
-            <h2>flan</h2>
+        <div class="skin-grid">
+
+            <div class="skin-card">
+                <a class="skin-preview" href="https://www.mediafire.com/file/p7op2pqsdeygjor/aristia+gate.osk/file" target="_blank">
+                    <img src="images/aristia.png" alt="aristia gate 11111111">
+                </a>
+                <h2>aristia gate 11111111</h2>
+            </div>
+
         </div>
 
-        <div class="skin-card">
-            <a class="skin-preview" href="https://www.mediafire.com/file/t2t49pc916cfvim/flandt+v1.osk/file" target="_blank">
-                <img src="images/flandt.png" alt="flan dt">
-            </a>
-            <h2>flan dt</h2>
+    </section>
+
+
+    <section id="zeni" class="page">
+
+        <button class="back" onclick="showHome()">Back</button>
+
+        <div class="profile-header">
+            <img src="https://a.ppy.sh/22453980" alt="zeni">
+            <h1>zeni</h1>
+            <p>osu! standard player</p>
         </div>
 
-    </div>
-
-</section>
-
-
-
-<section id="guibbs" class="page">
-
-    <button class="back" onclick="showHome()">Back</button>
-
-    <div class="profile-header">
-        <img src="https://a.ppy.sh/14399682" alt="guibbs">
-        <h1>guibbs</h1>
-        <p>osu! standard player</p>
-    </div>
-
-    <div class="socials">
-        <a href="https://x.com/gui66s" target="_blank">TWITTER</a>
-        <a href="https://twitch.tv/guibbs" target="_blank">TWITCH</a>
-        <a href="https://osu.ppy.sh/users/14399682" target="_blank">OSU! PROFILE</a>
-    </div>
-
-    <h2 class="section-title">/// Guibbs's Skins</h2>
-
-    <div class="skin-grid">
-
-        <div class="skin-card">
-            <a class="skin-preview" href="https://www.mediafire.com/file/p7op2pqsdeygjor/aristia+gate.osk/file" target="_blank">
-                <img src="images/aristia.png" alt="aristia gate 11111111">
-            </a>
-            <h2>aristia gate 11111111</h2>
+        <div class="socials">
+            <a href="https://x.com/zeniossu" target="_blank">TWITTER</a>
+            <a href="https://osu.ppy.sh/users/22453980" target="_blank">OSU! PROFILE</a>
         </div>
 
-    </div>
+        <h2 class="section-title">/// zeni's Skins</h2>
 
-</section>
+        <div class="skin-grid">
 
+            <div class="skin-card">
+                <a class="skin-preview" href="https://www.mediafire.com/file/e3d2dl1nohdpylf/--_DT_zeni.osk/file" target="_blank">
+                    <img src="images/zeni.png" alt="-- DT zeni">
+                </a>
+                <h2>-- DT zeni</h2>
+            </div>
 
-<section id="zeni" class="page">
-
-    <button class="back" onclick="showHome()">Back</button>
-
-    <div class="profile-header">
-        <img src="https://a.ppy.sh/22453980" alt="zeni">
-        <h1>zeni</h1>
-        <p>osu! standard player</p>
-    </div>
-
-    <div class="socials">
-        <a href="https://x.com/zeniossu" target="_blank">TWITTER</a>
-        <a href="https://osu.ppy.sh/users/22453980" target="_blank">OSU! PROFILE</a>
-    </div>
-
-    <h2 class="section-title">/// zeni's Skins</h2>
-
-    <div class="skin-grid">
-
-        <div class="skin-card">
-            <a class="skin-preview" href="https://www.mediafire.com/file/e3d2dl1nohdpylf/--_DT_zeni.osk/file" target="_blank">
-                <img src="images/zeni.png" alt="-- DT zeni">
-            </a>
-            <h2>-- DT zeni</h2>
         </div>
 
-    </div>
+    </section>
 
-</section>
+    <section id="dwlavi" class="page">
 
-<section id="dwlavi" class="page">
+        <button class="back" onclick="showHome()">Back</button>
 
-    <button class="back" onclick="showHome()">Back</button>
-
-    <div class="profile-header">
-        <img src="https://a.ppy.sh/20894239" alt="dwlavi">
-        <h1>dwlavi</h1>
-        <p>osu! standard player</p>
-    </div>
-
-    <div class="socials">
-        <a href="https://x.com/aftrhanabi" target="_blank">TWITTER</a>
-        <a href="https://twitch.tv/dwlavi" target="_blank">TWITCH</a>
-        <a href="https://osu.ppy.sh/users/20894239" target="_blank">OSU! PROFILE</a>
-    </div>
-
-    <h2 class="section-title">/// Dwlavi's Skins</h2>
-
-    <div class="skin-grid">
-
-        <div class="skin-card">
-            <a class="skin-preview" href="https://skins.osuck.net/skins/5492?tab=downloads" target="_blank">
-                <img src="images/yukari.png" alt="yukari lover">
-            </a>
-            <h2>yukari lover</h2>
+        <div class="profile-header">
+            <img src="https://a.ppy.sh/20894239" alt="dwlavi">
+            <h1>dwlavi</h1>
+            <p>osu! standard player</p>
         </div>
 
-        <div class="skin-card">
-            <a class="skin-preview" href="https://www.mediafire.com/file/k0uqfax5fk2akzk/oblivion_222.osk/file" target="_blank">
-                <img src="images/oblivion222.png" alt="oblivion 222">
-            </a>
-            <h2>oblivion 222</h2>
+        <div class="socials">
+            <a href="https://x.com/aftrhanabi" target="_blank">TWITTER</a>
+            <a href="https://twitch.tv/dwlavi" target="_blank">TWITCH</a>
+            <a href="https://osu.ppy.sh/users/20894239" target="_blank">OSU! PROFILE</a>
         </div>
 
+        <h2 class="section-title">/// Dwlavi's Skins</h2>
 
-    </div>
+        <div class="skin-grid">
 
-</section>
+            <div class="skin-card">
+                <a class="skin-preview" href="https://skins.osuck.net/skins/5492?tab=downloads" target="_blank">
+                    <img src="images/yukari.png" alt="yukari lover">
+                </a>
+                <h2>yukari lover</h2>
+            </div>
+
+            <div class="skin-card">
+                <a class="skin-preview" href="https://www.mediafire.com/file/k0uqfax5fk2akzk/oblivion_222.osk/file" target="_blank">
+                    <img src="images/oblivion222.png" alt="oblivion 222">
+                </a>
+                <h2>oblivion 222</h2>
+            </div>
 
 
-
-<section id="reunion" class="page">
-
-    <button class="back" onclick="showHome()">Back</button>
-
-    <div class="profile-header">
-        <img src="https://a.ppy.sh/10440699" alt="reunion">
-        <h1>reunion</h1>
-        <p>osu! standard player</p>
-    </div>
-
-    <div class="socials">
-        <a href="https://x.com/lvl6ss" target="_blank">TWITTER</a>
-        <a href="https://twitch.tv/reunionsu" target="_blank">TWITCH</a>
-        <a href="https://osu.ppy.sh/users/10440699" target="_blank">OSU! PROFILE</a>
-    </div>
-
-    <h2 class="section-title">/// Reunion's Skins</h2>
-
-    <div class="skin-grid">
-
-        <div class="skin-card">
-            <a class="skin-preview" href="https://drive.google.com/file/d/1DnMMTziv_Aq6I49O5gmpGbXrDytmWGxZ/view?usp=sharing" target="_blank">
-                <img src="images/reunion.png" alt="reunion hddt">
-            </a>
-            <h2>reunion HDDT</h2>
         </div>
 
+    </section>
 
-        <div class="skin-card">
-            <a class="skin-preview" href="https://drive.google.com/file/d/1ICTd4ywwpKOmqV-Y3Thqe-kenBhJPwsH/view?usp=sharing" target="_blank">
-                <img src="images/reunionog.png" alt="reunion hddt og">
-            </a>
-            <h2>reunion HDDT og</h2>
+
+
+    <section id="reunion" class="page">
+
+        <button class="back" onclick="showHome()">Back</button>
+
+        <div class="profile-header">
+            <img src="https://a.ppy.sh/10440699" alt="reunion">
+            <h1>reunion</h1>
+            <p>osu! standard player</p>
         </div>
 
-        <div class="skin-card">
-            <a class="skin-preview" href="https://drive.google.com/file/d/16s9h43eejOseA-VyhQC6AXaGxc3uEvWz/view?usp=sharing" target="_blank">
-                <img src="images/ar11.png" alt="ar11">
-            </a>
-            <h2>ar11</h2>
+        <div class="socials">
+            <a href="https://x.com/lvl6ss" target="_blank">TWITTER</a>
+            <a href="https://twitch.tv/reunionsu" target="_blank">TWITCH</a>
+            <a href="https://osu.ppy.sh/users/10440699" target="_blank">OSU! PROFILE</a>
         </div>
 
+        <h2 class="section-title">/// Reunion's Skins</h2>
 
-    </div>
+        <div class="skin-grid">
 
-</section>
+            <div class="skin-card">
+                <a class="skin-preview" href="https://drive.google.com/file/d/1DnMMTziv_Aq6I49O5gmpGbXrDytmWGxZ/view?usp=sharing" target="_blank">
+                    <img src="images/reunion.png" alt="reunion hddt">
+                </a>
+                <h2>reunion HDDT</h2>
+            </div>
 
+
+            <div class="skin-card">
+                <a class="skin-preview" href="https://drive.google.com/file/d/1ICTd4ywwpKOmqV-Y3Thqe-kenBhJPwsH/view?usp=sharing" target="_blank">
+                    <img src="images/reunionog.png" alt="reunion hddt og">
+                </a>
+                <h2>reunion HDDT og</h2>
+            </div>
+
+            <div class="skin-card">
+                <a class="skin-preview" href="https://drive.google.com/file/d/16s9h43eejOseA-VyhQC6AXaGxc3uEvWz/view?usp=sharing" target="_blank">
+                    <img src="images/ar11.png" alt="ar11">
+                </a>
+                <h2>ar11</h2>
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <section id="socials" class="page">
+        <h1>Socials</h1>
+        <p class="subtitle">/// Find us online</p>
+
+        <div class="socials">
+            <a href="https://x.com/legnaism" target="_blank" rel="noopener">TWITTER</a>
+            <a href="https://instagram.com/chainbail" target="_blank" rel="noopener">INSTAGRAM</a>
+            <a href="https://twitch.tv/pesames" target="_blank" rel="noopener">TWITCH</a>
+            <a href="https://osu.ppy.sh/users/23598448" target="_blank" rel="noopener">OSU! PROFILE</a>
+        </div>
+    </section>
 </main>
 
-
 <script>
-
 const feathers = document.getElementById("feathers");
 
 function createFeather() {
@@ -690,30 +776,29 @@ for (let i = 0; i < 20; i++) {
 
 setInterval(createFeather, 300);
 
-
-function showProfile(profile) {
-
+function showPage(pageId, button) {
     document.querySelectorAll(".page").forEach(page => {
         page.classList.remove("active");
     });
 
-    document.getElementById(profile).classList.add("active");
+    document.getElementById(pageId).classList.add("active");
+
+    if (button) {
+        document.querySelectorAll(".navbar button").forEach(navButton => {
+            navButton.classList.remove("active");
+        });
+
+        button.classList.add("active");
+    } else if (["meguri", "guibbs", "zeni", "dwlavi", "reunion"].includes(pageId)) {
+        document.querySelectorAll(".navbar button").forEach(navButton => {
+            navButton.classList.remove("active");
+        });
+
+        document.querySelector('.navbar button[onclick*="skins"]').classList.add("active");
+    }
 
     window.scrollTo(0, 0);
 }
-
-
-function showHome() {
-
-    document.querySelectorAll(".page").forEach(page => {
-        page.classList.remove("active");
-    });
-
-    document.getElementById("home").classList.add("active");
-
-    window.scrollTo(0, 0);
-}
-
 </script>
 
 </body>
