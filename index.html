@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meguri's Skin Hub</title>
+<title>BEBETAO LANCHES</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -21,7 +21,7 @@ body {
     text-align: center;
     background:
         linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.88)),
-        url("images/BG.jpg") center/cover fixed;
+        url("images/BG.png") center/cover fixed;
 }
 
 #feathers {
@@ -404,6 +404,60 @@ h2 {
         font-size: 1.9rem;
     }
 }
+
+.intro-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background:
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.88)),
+        url("images/BG.jpg") center/cover fixed;
+    transition: opacity .5s ease, visibility .5s ease;
+}
+
+.intro-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-content {
+    text-align: center;
+}
+
+.intro-content h1 {
+    margin-bottom: 30px;
+}
+
+.enter-button {
+    padding: 15px 45px;
+    color: white;
+    background: rgba(255,255,255,.12);
+    border: 1px solid white;
+    cursor: pointer;
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition: .25s;
+}
+
+.enter-button:hover {
+    background: rgba(255,255,255,.3);
+    transform: translateY(-4px);
+}
+
+.site-content {
+    display: none;
+}
+
+.site-content.visible {
+    display: block;
+}
+
 </style>
 </head>
 
@@ -412,57 +466,36 @@ h2 {
 <div id="feathers"></div>
 
 <main>
-    <nav class="navbar">
-        <button class="active" onclick="showPage('home', this)">HOME</button>
-        <button onclick="showPage('team', this)">TEAM</button>
-        <button onclick="showPage('skins', this)">SKINS</button>
-        <button onclick="showPage('socials', this)">SOCIALS</button>
-    </nav>
+    <section id="intro" class="intro-screen">
+        <div class="intro-content">
+            <h1>BEBETAO LANCHES</h1>
+            <button class="enter-button" onclick="enterSite()">ENTER</button>
+        </div>
+    </section>
+
+    <div id="site-content" class="site-content">
+        <nav class="navbar">
+            <button class="active" onclick="showPage('home', this)">HOME</button>
+            <button onclick="showPage('team', this)">TEAM</button>
+        </nav>
 
     <section id="home" class="page active">
-        <h1>Meguri's Skin Hub</h1>
-        <p class="subtitle">Welcome to the osu! skin collection.</p>
+        <h1>BEBETAO LANCHES</h1>
 
         <div class="welcome-box">
-            <h2 class="section-title">/// Welcome</h2>
+            <h2 class="section-title"> Welcome </h2>
             <p>
-                A collection of osu! skins used by the team.
-                Browse the profiles, discover skins, and find your next favorite setup.
+                Segredo 2.
             </p>
         </div>
     </section>
 
     <section id="team" class="page">
         <h1>Team</h1>
-        <p class="subtitle">/// Meet the players</p>
 
-        <div class="team-list">
-            <div class="team-member">
-                <h2>meguri</h2>
-                <p>osu! standard player</p>
-            </div>
-            <div class="team-member">
-                <h2>guibbs</h2>
-                <p>osu! standard player</p>
-            </div>
-            <div class="team-member">
-                <h2>zeni</h2>
-                <p>osu! standard player</p>
-            </div>
-            <div class="team-member">
-                <h2>dwlavi</h2>
-                <p>osu! standard player</p>
-            </div>
-            <div class="team-member">
-                <h2>reunion</h2>
-                <p>osu! standard player</p>
-            </div>
+        <div class="socials">
+            <a href="https://osu.ppy.sh/teams/53262" target="_blank" rel="noopener">OSU! TEAM PAGE</a>
         </div>
-    </section>
-
-    <section id="skins" class="page">
-        <h1>Skins</h1>
-        <p class="subtitle">/// Choose a profile to view their skins</p>
 
         <div class="profile-grid">
             <div class="profile" onclick="showPage('meguri', null)">
@@ -499,16 +532,6 @@ h2 {
                     <p>osu! standard player</p>
                     <span>View Skins</span>
                 </div>
-            </div>
-
-            <div class="profile" onclick="showPage('reunion', null)">
-                <img src="https://a.ppy.sh/10440699" alt="reunion">
-                <div>
-                    <h2>reunion</h2>
-                    <p>osu! standard player</p>
-                    <span>View Skins</span>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -529,7 +552,7 @@ h2 {
             <a href="https://osu.ppy.sh/users/23598448" target="_blank">OSU! PROFILE</a>
         </div>
 
-        <h2 class="section-title">/// Meguri's Skins</h2>
+        <h2 class="section-title">/// BEBETAO Skins</h2>
 
         <div class="skin-grid">
 
@@ -692,52 +715,7 @@ h2 {
 
 
 
-    <section id="reunion" class="page">
 
-        <button class="back" onclick="showHome()">Back</button>
-
-        <div class="profile-header">
-            <img src="https://a.ppy.sh/10440699" alt="reunion">
-            <h1>reunion</h1>
-            <p>osu! standard player</p>
-        </div>
-
-        <div class="socials">
-            <a href="https://x.com/lvl6ss" target="_blank">TWITTER</a>
-            <a href="https://twitch.tv/reunionsu" target="_blank">TWITCH</a>
-            <a href="https://osu.ppy.sh/users/10440699" target="_blank">OSU! PROFILE</a>
-        </div>
-
-        <h2 class="section-title">/// Reunion's Skins</h2>
-
-        <div class="skin-grid">
-
-            <div class="skin-card">
-                <a class="skin-preview" href="https://drive.google.com/file/d/1DnMMTziv_Aq6I49O5gmpGbXrDytmWGxZ/view?usp=sharing" target="_blank">
-                    <img src="images/reunion.png" alt="reunion hddt">
-                </a>
-                <h2>reunion HDDT</h2>
-            </div>
-
-
-            <div class="skin-card">
-                <a class="skin-preview" href="https://drive.google.com/file/d/1ICTd4ywwpKOmqV-Y3Thqe-kenBhJPwsH/view?usp=sharing" target="_blank">
-                    <img src="images/reunionog.png" alt="reunion hddt og">
-                </a>
-                <h2>reunion HDDT og</h2>
-            </div>
-
-            <div class="skin-card">
-                <a class="skin-preview" href="https://drive.google.com/file/d/16s9h43eejOseA-VyhQC6AXaGxc3uEvWz/view?usp=sharing" target="_blank">
-                    <img src="images/ar11.png" alt="ar11">
-                </a>
-                <h2>ar11</h2>
-            </div>
-
-
-        </div>
-
-    </section>
 
 
     <section id="socials" class="page">
@@ -751,6 +729,7 @@ h2 {
             <a href="https://osu.ppy.sh/users/23598448" target="_blank" rel="noopener">OSU! PROFILE</a>
         </div>
     </section>
+    </div>
 </main>
 
 <script>
@@ -776,6 +755,11 @@ for (let i = 0; i < 20; i++) {
 
 setInterval(createFeather, 300);
 
+function enterSite() {
+    document.getElementById("intro").classList.add("hidden");
+    document.getElementById("site-content").classList.add("visible");
+}
+
 function showPage(pageId, button) {
     document.querySelectorAll(".page").forEach(page => {
         page.classList.remove("active");
@@ -789,7 +773,7 @@ function showPage(pageId, button) {
         });
 
         button.classList.add("active");
-    } else if (["meguri", "guibbs", "zeni", "dwlavi", "reunion"].includes(pageId)) {
+    } else if (["meguri", "guibbs", "zeni", "dwlavi"].includes(pageId)) {
         document.querySelectorAll(".navbar button").forEach(navButton => {
             navButton.classList.remove("active");
         });
